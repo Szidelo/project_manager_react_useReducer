@@ -43,11 +43,10 @@ const projectReducer = (state, action) => {
 		return {
 			...state,
 			projects: updatedProjectList,
-			selectedProject: updatedProjectList[0]
+			selectedProject: updatedProjectList[currentIndex - 1]
 		};
 	}
 
-	console.log(state);
 	return state;
 };
 

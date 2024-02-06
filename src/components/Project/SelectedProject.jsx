@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { ProjectContext } from "../../store/project-context";
 
-const SelectedProject = () => {
+const SelectedProject = ({setContent}) => {
 	const { selectedProject, removeProject } = useContext(ProjectContext);
 
 	const formattedDate = new Date(selectedProject?.dueDate).toLocaleDateString("en-Us", {
@@ -10,8 +10,13 @@ const SelectedProject = () => {
 		day: "numeric",
 	});
 
+	
+	const handleContent = () => {
+		setContent('home')
+	}
+	
 	let content;
-
+	
 	if (selectedProject) {
 		content = (
 			<div className="w-[35rem] mt-16">
@@ -36,7 +41,7 @@ const SelectedProject = () => {
 			</div>
 		);
 	} else {
-		content = <h2>No project</h2>;
+		handleContent()
 	}
 
 	return <>{content}</>;

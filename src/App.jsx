@@ -19,7 +19,7 @@ function App() {
 	} else if (contentValue === "addProject") {
 		content = <AddProject setContent={handleContent} />;
 	} else if (contentValue === "selectedProject") {
-		content = <SelectedProject />;
+		content = <SelectedProject setContent={handleContent}/>;
 	}
 
 	return (
