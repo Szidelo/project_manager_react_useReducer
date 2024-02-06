@@ -33,6 +33,20 @@ const projectReducer = (state, action) => {
 		};
 	}
 
+	if (action.type === "REMOVE_PROJECT") {
+		const updatedProjectList = [...state.projects];
+
+		const currentIndex = updatedProjectList.indexOf(action.payload);
+
+		updatedProjectList.splice(currentIndex, 1);
+
+		return {
+			...state,
+			projects: updatedProjectList,
+			selectedProject: updatedProjectList[0]
+		};
+	}
+
 	console.log(state);
 	return state;
 };
@@ -57,11 +71,19 @@ export default function ProjectContectProvider({ children }) {
 		});
 	};
 
+	const removeProject = (project) => {
+		projectDispatch({
+			type: "REMOVE_PROJECT",
+			payload: project,
+		});
+	};
+
 	const contextValue = {
 		projects: projectState.projects,
 		selectedProject: projectState.selectedProject,
 		handleAddProject: handleAddProject,
 		selectProject: selectProject,
+		removeProject: removeProject,
 	};
 
 	return <ProjectContext.Provider value={contextValue}>{children}</ProjectContext.Provider>;
